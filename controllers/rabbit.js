@@ -48,7 +48,7 @@ res.send('NOT IMPLEMENTED: rabbit update PUT' + req.params.id);
 exports.rabbit_view_all_Page = async function(req, res) {
     try{
     therabbit = await rabbit.find();
-    res.render('rabbit', { title: 'Machine Search Results', results: therabbit });
+    res.render('rabbit', { title: 'rabbit Search Results', results: therabbit });
     }
     catch(err){
     res.status(500);

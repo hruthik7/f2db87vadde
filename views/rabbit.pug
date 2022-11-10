@@ -2,9 +2,9 @@ extends layout
 
 block content
   h1= title
-  - var results = rabbit;
+  - var rabbit = results;
   div(class="container-fluid")
-    each value,index in results
+    each value,index in rabbit
       div(class="row" ,onclick=`buy(${index})`)
         div(class="col-sm-2") #{value.rabbit_Name}
         div(class="col-sm-2") #{value.rabbit_Price}
