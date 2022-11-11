@@ -2,8 +2,8 @@ var rabbit = require('../models/rabbit');
 // List of all rabbit
 exports.rabbit_list = async function(req, res) {
     try{ 
-        rabbit = await rabbit.find(); 
-        res.send(rabbit); 
+        results = await rabbit.find(); 
+        res.send(results); 
     } 
     catch(err){ 
         res.status(500); 
@@ -21,7 +21,6 @@ exports.rabbit_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters. 
     // Even though bodies can be in many different formats, we will be picky 
     // and require that it be a json object 
-    // {"MachineType":"Refrigerator","Capacity":1,"useType":"Domestic","Energy":"solar"}
     document.rabbit_Name = req.body.rabbit_Name; 
     document.rabbit_Price = req.body.rabbit_Price; 
     document.rabbit_gender = req.body.rabbit_gender; 
@@ -53,5 +52,36 @@ exports.rabbit_view_all_Page = async function(req, res) {
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
+    }
+};
+// for a specific rabbit.
+exports.rabbit_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    results = await rabbit.findById( req.params.id)
+    res.send(results)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
+   // Handle rabbit update form on PUT.
+exports.rabbit_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+   ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await rabbit.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.rabbit_Name)
+    toUpdate.rabbit_Name = req.body.rabbit_Name;
+    if(req.body.rabbit_Price) toUpdate.rabbit_Price = req.body.rabbit_Price;
+    if(req.body.rabbit_gender) toUpdate.rabbit_gender = req.body.rabbit_gender;
+    let results = await toUpdate.save();
+    console.log("Success " + results)
+    res.send(results)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id}
+   failed`);
     }
 };
