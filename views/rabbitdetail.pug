@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let rabbitid = toShow._id
+ - let rabbit_Name  = toShow.rabbit_Name
+ - let rabbit_Price = toShow.rabbit_Price
+ - let rabbit_gender = toShow.rabbit_gender
+ div
+  div.row
+   div(class='rabbitAttr mr-3') rabbit ID is:
+   div #{rabbitid}
+  div.row
+   div(class='rabbitAttr mr-3') rabbit_Name is:
+   div #{rabbit_Name}
+  div.row
+   div(class='rabbitAttr mr-3') rabbit_Price is:
+   div #{rabbit_Price}
+  div.row
+   div(class='rabbitAttr mr-3') rabbit_gender is:
+   div #{rabbit_gender}
