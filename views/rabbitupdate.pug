@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow==null)
+    h2 No instance to update 
+  else 
+    - let rabbitid = toShow._id 
+    - let rabbit_Name = toShow.rabbit_Name 
+    - let rabbit_Price = toShow.rabbit_Price 
+    - let costumesize = toShow.size 
+    
+    div.row(class='mb-2, design') 
+        div.mr-1 ID is 
+        div #{rabbitid} 
+    - let actionid = "/resource/rabbit/" + rabbitid 
+    form(id='RabbitForm', action= actionid, method="PUT") 
+        div.form-group 
+            label.rabbitAttr(for='rabbit_Name') rabbit Name
+            input#rabbit_Name(type='text', name='rabbit_Name', value= rabbit_Name ) 
+        div.form-group 
+            label.rabbitAttr(for='rabbit_gender')  rabbit gender
+            input#rabbit_gender(type='text', name='rabbit_gender', value= rabbit_gender ) 
+        div.form-group 
+            label.rabbitAttr(for='rabbit_Price') rabbit Price
+            input#rabbit_Price(type='number', name='rabbit_Price', value= rabbit_Price ) 
+        input(type="submit") 
+    
+    script. 
+        document.forms['RabbitForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'PUT', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Update succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Update failed " + error ) 
+        }); 
+        }); 

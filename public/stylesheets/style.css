@@ -11,3 +11,16 @@ a {
   background-color: aquamarine;
   width: 120px;
   }
+.design{
+  background-color: blue;
+  padding: 100;
+  font:16px "Times New Roman", Times, serif;
+  font-size: 30px;
+  width:100;
+} 
+
+.title {
+  text-decoration-line: underline;
+  color: aquamarine;
+  background-color: blanchedalmond;
+}
