@@ -11,11 +11,19 @@ router.get('/detail', rabbit_controlers.rabbit_view_one_Page);
 router.get('/create', rabbit_controlers.rabbit_create_Page);
 
 
-/* GET create update page */ 
-router.get('/update', rabbit_controlers.rabbit_update_Page);
-
 /* GET delete costume page */ 
 router.get('/delete', rabbit_controlers.rabbit_delete_Page); 
 
+// redirect to login. 
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  } 
+ 
+  /* GET update costume page */ 
+router.get('/update', secured, rabbit_controlers.rabbit_update_Page); 
 
 module.exports = router;

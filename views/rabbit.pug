@@ -3,14 +3,19 @@ extends layout
 block content
   h1= title
   - var rabbit = results;
+  - let x3 = `dispatch(\"/rabbit/create\")`
   div(class="container-fluid")
     each item,index in rabbit
      - let destination = `dispatch(\"/rabbit/update?id=${item._id}\")`
+     - let x1 = `dispatch(\"/rabbit/detail?id=${item._id}\")`
+     - let x2 = `dispatch(\"/rabbit/delete?id=${item._id}\")`
       div(class="row" ,onclick=`buy(${index})`)
         div(class="col-sm-2") #{item.rabbit_Name}
         div(class="col-sm-2") #{item.rabbit_Price}
         div(class="col-sm-2") #{item.rabbit_gender}
       button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-primary ml-1", onclick= x1) Details
+      button.btn( class="btn-primary ml-1", onclick= x2) Delete
   script.
      function dispatch(path){
        window.location.href=path
