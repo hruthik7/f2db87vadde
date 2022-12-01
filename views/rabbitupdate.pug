@@ -17,13 +17,13 @@ block content
     form(id='RabbitForm', action= actionid, method="PUT") 
         div.form-group 
             label.rabbitAttr(for='rabbit_Name') rabbit Name
-            input#rabbit_Name(type='text', name='rabbit_Name', value= rabbit_Name ) 
+            input#rabbit_Name(type='text', name='rabbit_Name', value= rabbit_Name,minlength='4',maxlength='5' ) 
         div.form-group 
             label.rabbitAttr(for='rabbit_gender')  rabbit gender
-            input#rabbit_gender(type='text', name='rabbit_gender', value= rabbit_gender) 
+            input#rabbit_gender(type='text', name='rabbit_gender', value= rabbit_gender,minlength='1',maxlength='5') 
         div.form-group 
             label.rabbitAttr(for='rabbit_Price') rabbit Price
-            input#rabbit_Price(type='number', name='rabbit_Price', value= rabbit_Price , min='1'. max='20') 
+            input#rabbit_Price(type='number', name='rabbit_Price', value= rabbit_Price , min='4'. max='20') 
         input(type="submit") 
     
     script. 
